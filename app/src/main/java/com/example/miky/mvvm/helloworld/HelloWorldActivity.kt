@@ -15,7 +15,7 @@ class HelloWorldActivity : AppCompatActivity(), HelloWorldMainActivityInterface 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        HelloWorldCoordinator(this)
+        HelloWorldCoordinator.createModule(this)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_helloworld)
 
@@ -24,6 +24,7 @@ class HelloWorldActivity : AppCompatActivity(), HelloWorldMainActivityInterface 
         }
 
         viewModel.liveTextData.observe(this, Observer {
+            binding.mainSl.isRefreshing = false
             binding.mainText.text = it
         })
 
