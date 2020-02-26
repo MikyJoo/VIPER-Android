@@ -6,21 +6,26 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".helloworld.HelloWorldActivity">
+        tools:context=".jokelist.JokeMainActivity">
 
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/main_sl"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <TextView
-                android:id="@+id/main_text"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/joke_list"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="20dp"
-                android:textColor="@color/colorPrimaryDark"
-                tools:text="Hello World~!"
-                android:gravity="center"/>
+                android:layout_height="match_parent" />
+
+<!--            <TextView-->
+<!--                android:id="@+id/main_text"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:textSize="20dp"-->
+<!--                android:textColor="@color/colorPrimaryDark"-->
+<!--                tools:text="Hello World~!"-->
+<!--                android:gravity="center"/>-->
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

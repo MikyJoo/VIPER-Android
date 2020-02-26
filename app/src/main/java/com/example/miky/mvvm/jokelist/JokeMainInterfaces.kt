@@ -1,6 +1,7 @@
-package com.example.miky.mvvm.helloworld
+package com.example.miky.mvvm.jokelist
 
 import androidx.lifecycle.MutableLiveData
+import com.example.miky.mvvm.data.Joke
 
 interface HelloWorldMainCoodinatorInterface {
     var view: HelloWorldMainActivityInterface
@@ -15,7 +16,7 @@ interface HelloWorldMainActivityInterface {
 }
 
 interface HelloWorldMainViewModelInterface {
-    var liveTextData: MutableLiveData<String>
+    var liveJokeList: MutableLiveData<ArrayList<Joke>>
 
     fun onCreate()
     fun refresh()
