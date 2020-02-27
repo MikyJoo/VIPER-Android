@@ -1,9 +1,8 @@
 package com.example.miky.mvvm.jokelist
 
-import androidx.lifecycle.MutableLiveData
 import com.example.miky.mvvm.data.JokeRepository
 
-class JokeMainViewModel(var coordinator: HelloWorldMainCoodinatorInterface): HelloWorldMainViewModelInterface {
+class JokeListViewModel(var coordinator: JokeListCoodinatorInterface): JokeListViewModelInterface {
 
     var repository = JokeRepository.getInstance()
 
@@ -15,5 +14,9 @@ class JokeMainViewModel(var coordinator: HelloWorldMainCoodinatorInterface): Hel
 
     override fun refresh() {
         repository.requestList()
+    }
+
+    override fun onClickItem(index: Int) {
+        coordinator.startJokeDetail(index)
     }
 }

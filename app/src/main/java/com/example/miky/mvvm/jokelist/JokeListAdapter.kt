@@ -10,10 +10,10 @@ import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.miky.mvvm.R
 import com.example.miky.mvvm.data.Joke
 
-class JokeMainAdapter(
+class JokeListAdapter(
     private var context: Context,
     private var jokeList: ArrayList<Joke>?,
-    var itemClickListener: (View, Int) -> Unit): RecyclerView.Adapter<JokeMainAdapter.JokeViewHolder>() {
+    var itemClickListener: (View, Int) -> Unit): RecyclerView.Adapter<JokeListAdapter.JokeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): JokeViewHolder {
         var itemView = LayoutInflater.from(context).inflate(R.layout.joke_list_item, parent, false)

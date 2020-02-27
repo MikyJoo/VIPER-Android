@@ -17,20 +17,18 @@ class JokeRepository private constructor() {
     var jokeList: MutableLiveData<ArrayList<Joke>> = MutableLiveData<ArrayList<Joke>>()
 
     companion object {
-        private val sInstance: JokeRepository by lazy { JokeRepository() }
+        private lateinit var sInstance: JokeRepository
 
         fun getInstance(): JokeRepository {
+            if (!::sInstance.isInitialized) {
+                sInstance = JokeRepository()
+            }
+
             return sInstance
         }
     }
 
     fun getLiveDataForList(): MutableLiveData<ArrayList<Joke>> {
-
-        if (jokeList.value == null) {
-            Log.i("miky", "jokelist if null")
-        }
-
-
         jokeList.value?:let {
             Log.i("miky", "jokelist let null")
             requestList()
@@ -67,7 +65,7 @@ class JokeRemoteRepository () {
         disposable.add(Observable.just("")
             .subscribeOn(Schedulers.io())
             .switchMap { jokeRetrofitService.getList().toObservable() }
-            .observeOn(AndroidSchedulers.mainThread())
+//            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if("success".equals(it.type)) {
                     Log.i("miky", "joke list size: ${it.value.size}")

@@ -1,6 +1,6 @@
 package com.example.miky.mvvm.jokelist
 
-import android.content.Intent
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -9,30 +9,33 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.miky.mvvm.R
-import com.example.miky.mvvm.databinding.ActivityJokeMainBinding
+import com.example.miky.mvvm.databinding.ActivityJokeListBinding
 
-class JokeMainActivity : AppCompatActivity(), HelloWorldMainActivityInterface {
+class JokeListActivity : AppCompatActivity(), JokeListActivityInterface {
 
-    override lateinit var viewModel: HelloWorldMainViewModelInterface
-    private lateinit var binding: ActivityJokeMainBinding
+    override lateinit var viewModel: JokeListViewModelInterface
+    private lateinit var binding: ActivityJokeListBinding
 
     private var layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
-    private lateinit var adapter: JokeMainAdapter
+    private lateinit var adapter: JokeListAdapter
+
+    override fun getContext(): Context {
+        return this
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        JokeMainCoordinator.createModule(
-            this
-        )
+        JokeListCoordinator.createModule(this)
 
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_joke_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_joke_list)
 
         binding.mainSl.setOnRefreshListener {
             viewModel.refresh()
         }
+        binding.mainSl.isRefreshing = true
 
         binding.jokeList.layoutManager = layoutManager
-        adapter = JokeMainAdapter(this, null, onClickListItem)
+        adapter = JokeListAdapter(this, null, onClickListItem)
         binding.jokeList.adapter = adapter
 
         viewModel.liveJokeList.observe(this, Observer {
@@ -44,11 +47,7 @@ class JokeMainActivity : AppCompatActivity(), HelloWorldMainActivityInterface {
         viewModel.onCreate()
     }
 
-    val onClickListItem = fun(view: View, position: Int) {
-//        mainViewModel.onClickItem(position)
-//        var intent = Intent(this, DetailActivity::class.java)
-//        intent.putExtra("position", position)
-//        startActivity(intent)
+    val onClickListItem = fun(view: View, index: Int) {
+        viewModel.onClickItem(index)
     }
-
 }
