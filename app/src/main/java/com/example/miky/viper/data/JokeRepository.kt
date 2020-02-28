@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
@@ -13,7 +14,8 @@ import retrofit2.http.GET
 
 class JokeRepository private constructor() {
     private val remoteSource = JokeRemoteRepository()
-    var jokeList: MutableLiveData<ArrayList<Joke>> = MutableLiveData<ArrayList<Joke>>()
+
+    private var jokeList: ArrayList<Joke>? = null
 
     companion object {
         private lateinit var sInstance: JokeRepository
@@ -22,28 +24,19 @@ class JokeRepository private constructor() {
             if (!::sInstance.isInitialized) {
                 sInstance = JokeRepository()
             }
-
             return sInstance
         }
     }
 
-    fun getLiveDataForList(): MutableLiveData<ArrayList<Joke>> {
-        jokeList.value?:let {
-            Log.i("miky", "jokelist let null")
-            requestList()
-        }
-
-        return jokeList
-    }
-
-    fun requestList() {
+    fun requestList(result: (ArrayList<Joke>) -> Unit) {
         remoteSource.requestList {
-            jokeList.postValue(it)
+            jokeList = it
+            result(it)
         }
     }
 
     fun getJoke(position: Int): Joke? {
-        return jokeList.value?.get(position)
+        return jokeList?.get(position)
     }
 }
 
@@ -64,7 +57,7 @@ class JokeRemoteRepository () {
         disposable.add(Observable.just("")
             .subscribeOn(Schedulers.io())
             .switchMap { jokeRetrofitService.getList().toObservable() }
-//            .observeOn(AndroidSchedulers.mainThread())
+            .observeOn(AndroidSchedulers.mainThread())
             .subscribe({
                 if("success".equals(it.type)) {
                     Log.i("miky", "joke list size: ${it.value.size}")

@@ -9,28 +9,28 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.miky.viper.R
+import com.example.miky.viper.data.Joke
 import com.example.miky.viper.databinding.ActivityJokeListBinding
 
 class JokeListActivity : AppCompatActivity(), JokeListActivityInterface {
 
-    override lateinit var viewModel: JokeListViewModelInterface
+    override lateinit var presenter: JokeListPresenterInterface
     private lateinit var binding: ActivityJokeListBinding
 
     private var layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
     private lateinit var adapter: JokeListAdapter
 
-    override fun getContext(): Context {
-        return this
-    }
+    override val viewContext: Context
+        get() = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        JokeListCoordinator.createModule(this)
+        JokeListRouter.createModule(this)
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_joke_list)
 
         binding.mainSl.setOnRefreshListener {
-            viewModel.refresh()
+            presenter.refresh()
         }
         binding.mainSl.isRefreshing = true
 
@@ -38,16 +38,15 @@ class JokeListActivity : AppCompatActivity(), JokeListActivityInterface {
         adapter = JokeListAdapter(this, null, onClickListItem)
         binding.jokeList.adapter = adapter
 
-        viewModel.liveJokeList.observe(this, Observer {
-            Log.i("miky", "observe~!!!! ${it.size}")
-            binding.mainSl.isRefreshing = false
-            adapter.setList(it)
-        })
-
-        viewModel.onCreate()
+        presenter.onCreate()
     }
 
     val onClickListItem = fun(view: View, index: Int) {
-        viewModel.onClickItem(index)
+        presenter.onClickItem(index)
+    }
+
+    override fun updateList(jokeList: ArrayList<Joke>) {
+        binding.mainSl.isRefreshing = false
+        adapter.setList(jokeList)
     }
 }

@@ -1,11 +1,10 @@
 package com.example.miky.viper.jokelist
 
-import android.content.Context
-import androidx.lifecycle.MutableLiveData
+import com.example.miky.viper.base.BaseViewInterface
 import com.example.miky.viper.data.Joke
 
-interface JokeListCoodinatorInterface {
-    var view: JokeListActivityInterface
+interface JokeListRouterInterface {
+    var view: BaseViewInterface
 
     interface Creator {
         fun createModule(view: JokeListActivityInterface)
@@ -14,15 +13,20 @@ interface JokeListCoodinatorInterface {
     fun startJokeDetail(index: Int)
 }
 
-interface JokeListActivityInterface {
-    var viewModel: JokeListViewModelInterface
-    fun getContext(): Context
+interface JokeListActivityInterface: BaseViewInterface {
+    var presenter: JokeListPresenterInterface
+
+    fun updateList(jokeList: ArrayList<Joke>)
 }
 
-interface JokeListViewModelInterface {
-    var liveJokeList: MutableLiveData<ArrayList<Joke>>
+interface JokeListPresenterInterface {
+    var jokeList: ArrayList<Joke>
 
     fun onCreate()
     fun refresh()
     fun onClickItem(index: Int)
+}
+
+interface JokeListInteractorInterface {
+    fun loadJokeList(result: (ArrayList<Joke>) -> Unit)
 }

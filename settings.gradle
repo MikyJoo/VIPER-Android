@@ -1,2 +1,2 @@
-rootProject.name='MVVM-Android'
+rootProject.name='VIPER-Android'
 include ':app'
