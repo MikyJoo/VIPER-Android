@@ -1,10 +1,9 @@
-package com.example.miky.mvvm.detail
+package com.example.miky.viper.detail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.example.miky.mvvm.data.Joke
-import com.example.miky.mvvm.data.JokeRepository
+import com.example.miky.viper.data.Joke
+import com.example.miky.viper.data.JokeRepository
 
 class JokeDetailViewModel(var coordinator: JokeDetailCoodinatorInterface): JokeDetailViewModelInterface {
 

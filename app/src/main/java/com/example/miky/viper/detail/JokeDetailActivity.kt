@@ -1,11 +1,11 @@
-package com.example.miky.mvvm.detail
+package com.example.miky.viper.detail
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
-import com.example.miky.mvvm.R
-import com.example.miky.mvvm.databinding.ActivityJokeDetailBinding
+import com.example.miky.viper.R
+import com.example.miky.viper.databinding.ActivityJokeDetailBinding
 
 class JokeDetailActivity : AppCompatActivity(), JokeDetailActivityInterface {
 

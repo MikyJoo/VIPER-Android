@@ -1,4 +1,4 @@
-package com.example.miky.mvvm.jokelist
+package com.example.miky.viper.jokelist
 
 import android.content.Context
 import android.os.Bundle
@@ -8,8 +8,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.miky.mvvm.R
-import com.example.miky.mvvm.databinding.ActivityJokeListBinding
+import com.example.miky.viper.R
+import com.example.miky.viper.databinding.ActivityJokeListBinding
 
 class JokeListActivity : AppCompatActivity(), JokeListActivityInterface {
 

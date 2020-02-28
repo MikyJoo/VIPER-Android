@@ -1,8 +1,7 @@
-package com.example.miky.mvvm.detail
+package com.example.miky.viper.detail
 
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import com.example.miky.mvvm.data.Joke
+import com.example.miky.viper.data.Joke
 
 interface JokeDetailCoodinatorInterface {
     var view: JokeDetailActivityInterface

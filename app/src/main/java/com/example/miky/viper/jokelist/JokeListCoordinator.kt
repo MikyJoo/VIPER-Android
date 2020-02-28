@@ -1,7 +1,7 @@
-package com.example.miky.mvvm.jokelist
+package com.example.miky.viper.jokelist
 
 import android.content.Intent
-import com.example.miky.mvvm.detail.JokeDetailActivity
+import com.example.miky.viper.detail.JokeDetailActivity
 
 class JokeListCoordinator private constructor(override var view: JokeListActivityInterface):
     JokeListCoodinatorInterface {

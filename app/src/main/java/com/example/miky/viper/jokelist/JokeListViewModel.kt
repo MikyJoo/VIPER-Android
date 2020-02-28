@@ -1,6 +1,6 @@
-package com.example.miky.mvvm.jokelist
+package com.example.miky.viper.jokelist
 
-import com.example.miky.mvvm.data.JokeRepository
+import com.example.miky.viper.data.JokeRepository
 
 class JokeListViewModel(var coordinator: JokeListCoodinatorInterface): JokeListViewModelInterface {
 

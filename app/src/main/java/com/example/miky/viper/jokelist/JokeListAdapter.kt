@@ -1,4 +1,4 @@
-package com.example.miky.mvvm.jokelist
+package com.example.miky.viper.jokelist
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.example.miky.mvvm.R
-import com.example.miky.mvvm.data.Joke
+import com.example.miky.viper.R
+import com.example.miky.viper.data.Joke
 
 class JokeListAdapter(
     private var context: Context,

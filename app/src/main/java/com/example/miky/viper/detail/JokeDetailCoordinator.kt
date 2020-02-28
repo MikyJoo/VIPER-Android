@@ -1,4 +1,4 @@
-package com.example.miky.mvvm.detail
+package com.example.miky.viper.detail
 
 class JokeDetailCoordinator private constructor(override var view: JokeDetailActivityInterface):
     JokeDetailCoodinatorInterface {

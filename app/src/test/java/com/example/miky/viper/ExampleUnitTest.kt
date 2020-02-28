@@ -1,4 +1,4 @@
-package com.example.miky.mvvm
+package com.example.miky.viper
 
 import org.junit.Test
 

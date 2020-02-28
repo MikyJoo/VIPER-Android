@@ -1,4 +1,4 @@
-package com.example.miky.mvvm.data
+package com.example.miky.viper.data
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

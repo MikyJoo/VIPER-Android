@@ -1,10 +1,9 @@
-package com.example.miky.mvvm.data
+package com.example.miky.viper.data
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
 import retrofit2.Retrofit
