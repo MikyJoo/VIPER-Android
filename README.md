@@ -1,9 +1,3 @@
-# MVVM-Android
-Android MVVM+C, Retrofit, DataBinding, LiveData
+# VIPER-Android
+Android VIPER simple example
 
-### branch
-```
-hello_world: basic
-simple_api: Retrofit, DataBinding, ListData
-material_design: google material components test
-```
