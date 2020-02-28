@@ -44,7 +44,7 @@ class JokeRepository private constructor() {
     }
 
     fun getJoke(position: Int): Joke? {
-        return jokeList.value?.get(position) ?:null
+        return jokeList.value?.get(position)
     }
 }
 
