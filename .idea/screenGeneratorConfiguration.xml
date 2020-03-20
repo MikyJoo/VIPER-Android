@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ScreenGeneratorConfiguration">
+    <option name="settings">
+      <Settings>
+        <option name="activityBaseClass" value="BaseActivity" />
+        <option name="fragmentBaseClass" value="BaseFragment" />
+        <option name="screenElements">
+          <list>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Presenter" />
+              <option name="template" value="package %packageName%&#10;&#10;class %screenName%Presenter(override var screenView: %screenName%ViewInterface): %screenName%PresenterInterface {&#10;    private final val TAG = this.javaClass.simpleName&#10;&#10;    override var router: %screenName%RouterInterface = %screenName%Router()&#10;    override var interactor: %screenName%InteractorInterface = %screenName%Interactor()&#10;&#10;    override fun onCreate() {&#10;    }&#10;}        " />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%Interfaces" />
+              <option name="name" value="Interfaces" />
+              <option name="template" value="package %packageName%&#10;&#10;interface %screenName%ViewInterface {&#10;    var presenter: %screenName%PresenterInterface     &#10;}&#10;&#10;interface %screenName%PresenterInterface {&#10;    var screenView: %screenName%ViewInterface&#10;    var router: %screenName%RouterInterface&#10;    var interactor: %screenName%InteractorInterface&#10;&#10;    fun onCreate()&#10;}&#10;&#10;interface %screenName%RouterInterface {&#10;&#10;}&#10;&#10;interface %screenName%InteractorInterface {&#10;&#10;}&#10;" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Activity" />
+              <option name="template" value="package %packageName%&#10;&#10;import android.os.Bundle&#10;import com.kaflix.carflix.common.base.BaseActivity&#10;&#10;class %screenName%%screenElement%: BaseActivity(), %screenName%ViewInterface {&#10;    private final val TAG = this.javaClass.simpleName&#10;&#10;    override lateinit var presenter: %screenName%PresenterInterface&#10;&#10;    override fun onCreate(savedInstanceState: Bundle?) {&#10;        super.onCreate(savedInstanceState)&#10;        presenter = %screenName%Presenter(this)&#10;&#10;        presenter.onCreate()&#10;    }&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Router" />
+              <option name="template" value="package %packageName%&#10;&#10;class %screenName%%screenElement%: %screenName%%screenElement%Interface {&#10;    private final val TAG = this.javaClass.simpleName&#10;}" />
+            </ScreenElement>
+            <ScreenElement>
+              <option name="fileNameTemplate" value="%screenName%%screenElement%" />
+              <option name="name" value="Interactor" />
+              <option name="template" value="package %packageName%&#10;&#10;class %screenName%%screenElement%: %screenName%%screenElement%Interface {&#10;    private final val TAG = this.javaClass.simpleName&#10;}" />
+            </ScreenElement>
+          </list>
+        </option>
+      </Settings>
+    </option>
+  </component>
+</project>
